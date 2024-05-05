@@ -1,0 +1,151 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(231, 201, 231);
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 20px;
+
+}
+
+.primero {
+    display: flex;
+    flex-direction: row; /* Establece la dirección de los elementos flexibles en fila */
+    align-items: center;
+}
+h2{
+    color: blueviolet;
+}
+.a{
+    background-color: blueviolet;
+    color: #f8f9fa;
+    display: block;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+    width: 200px;
+    text-decoration: none;
+    border-radius: 30px;
+}
+.a:hover{
+    background-color: blanchedalmond;
+    color: blueviolet;
+}
+.text{
+    margin: 20px;
+}
+.playa {
+    width: 400px;
+    border-radius: 20px;
+}
+p {
+    line-height: 1.5;
+}
+h1{
+    background-image: url(../img/letra.jpg);
+    font-size: 5rem;
+    background-size:contain;
+    background-clip: text;
+    text-align: center;
+    -webkit-background-clip: text;
+    color: transparent;
+
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+}
+
+
+@media (max-width: 800px) { 
+    .primero {
+        flex-direction: column; 
+    }
+}
+
+footer {
+    background-color: blueviolet;
+    color: #fff;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    padding: 10px;
+}
+
+
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 0.9em;
+}
+
+form {
+    margin: auto;
+    max-width: 400px; /* Ancho máximo del contenedor */
+    background-color: #c581ce;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%; /* Ancho del formulario */
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #870b8b;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+    background-color: rgb(236, 166, 225);
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+input[type="submit"] {
+    background-color: #852f9b;
+    color: #fff;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+.login-link {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+}
+
+.login-link a {
+    color: #2e064e; /* Color del enlace */
+}
+
+.login-link a:hover {
+    text-decoration: underline; /* Subrayar el enlace al pasar el ratón */
+}
