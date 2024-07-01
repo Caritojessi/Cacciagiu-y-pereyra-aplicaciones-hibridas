@@ -1,0 +1,333 @@
+.formulario {
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    margin: 8rem auto;
+}
+
+.formulario2 {
+    background-color: #512da8 !important;
+}
+
+.contenedor {
+    padding-top: 20px;
+}
+
+.formulario2 {
+    background-color: #441591;
+}
+
+.formulario p {
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.formulario span {
+    font-size: 12px;
+}
+
+.formulario a {
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.formulario button {
+    background-color: #512da8;
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.formulario .btn-register {
+    background-color: whitesmoke !important;
+    color: #1b1a1a !important;
+}
+
+.formulario button.hidden {
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.formulario form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.formulario2 form {
+    background-color: #512da8;
+    color: white;
+}
+
+.formulario input {
+    background-color: #a84fa8 !important;
+    color: #080000 !important;
+    border: none;
+    margin: 0.5rem 0;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    max-width: 280px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in {
+    transform: translateX(100%);
+}
+
+.sign-up {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.formulario.active .sign-up {
+    background-color: #b15eca !important;
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.boton {
+    background-color: violet !important;
+}
+
+.formulario.active .toggle-container {
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.diseño {
+    color: #fff !important;
+    padding: 10px;
+    border: 2px solid white;
+}
+
+.diseño1 {
+    border: 2px solid #441591;
+    padding: 10px;
+    color: #441591 !important;
+}
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    z-index: 1; /* Asegura que el toggle-container tenga un z-index menor */
+}
+
+.toggle {
+    background-color: #512da8;
+    height: 100%;
+    color: #fff;
+    position: relative;
+    left: -100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+    z-index: 1; /* Asegura que el toggle tenga un z-index menor */
+}
+
+.fondo {
+    background-color: #fff;
+    color: black;
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+    z-index: 2; /* Asegura que el toggle-panel tenga un z-index adecuado */
+}
+
+.formulario.active .toggle {
+    transform: translateX(50%);
+}
+
+.toggle2 {
+    background-color: white !important;
+    color: #441591;
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left {
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left {
+    transform: translateX(0);
+}
+
+.toggle-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right {
+    transform: translateX(200%);
+}
+
+.col-md-6 {
+    margin-bottom: 10px;
+}
+
+.card {
+    border: 1px solid #ccc;
+    margin-bottom: 10px !important;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .formulario {
+        width: 100%;
+        margin: 4rem auto;
+    }
+
+    .formulario form {
+        padding: 0 20px;
+    }
+
+    .form-container,
+    .toggle-container,
+    .toggle,
+    .toggle-panel {
+        width: 100%;
+        position: relative;
+        transform: translateX(0);
+    }
+
+    .formulario .sign-in,
+    .formulario .sign-up {
+        width: 100%;
+        position: static;
+        transform: translateX(0);
+        z-index: 1;
+    }
+
+    .formulario .toggle-container {
+        display: none;
+    }
+
+    .formulario.active .sign-up {
+        opacity: 1;
+        z-index: 5;
+        animation: none;
+    }
+
+    .formulario.active .toggle {
+        display: none;
+    }
+
+    .toggle-panel {
+        width: 100%;
+    }
+
+    .contenedor {
+        padding-top: 10px;
+    }
+
+    .formulario p {
+        margin: 10px 0;
+    }
+
+    .formulario input {
+        margin: 1rem 0;
+    }
+
+    .formulario button {
+        margin-top: 15px;
+    }
+
+    .formulario .sign-up {
+        margin-top: 20px;
+    }
+}

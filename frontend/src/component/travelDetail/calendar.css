@@ -1,0 +1,95 @@
+/* Estilo general del calendario */
+.fc {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 100%; /* Asegura que el calendario no exceda el ancho del contenedor */
+}
+
+/* Estilo de la barra de herramientas */
+.fc-toolbar {
+  background-color: #a03bb9;
+  border-radius: 8px 8px 0 0;
+  color: white;
+  padding: 10px;
+}
+
+/* Estilo de los botones en la barra de herramientas */
+.fc-toolbar .fc-button {
+  background-color: #a03bb9;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  margin: 0 5px;
+}
+
+.fc-toolbar .fc-button:hover {
+  background-color: #a03bb9;
+}
+
+.fc-toolbar .fc-button:focus {
+  outline: none;
+  box-shadow: 0 0 3px 2px rgba(0, 123, 255, 0.25);
+}
+
+.fc-toolbar h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+/* Estilo de los números del calendario */
+.fc-daygrid-day-number {
+  color: black !important;
+}
+
+/* Estilo de los días en el calendario */
+.fc-daygrid-day {
+  transition: background-color 0.3s;
+}
+
+.fc-daygrid-day:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilo de los eventos en el calendario */
+.fc-event {
+  background-color: #5e0874;
+  border: none;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+/* Estilo de los puntos de evento en el calendario */
+.fc-daygrid-event-dot {
+  background-color: #ff00d4;
+}
+
+/* Ajuste de la scroll del calendario */
+.fc-scroller {
+  overflow: hidden;
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 768px) {
+  .fc {
+    padding: 10px; /* Reducir el padding para dispositivos móviles */
+  }
+  
+  .fc-toolbar {
+    padding: 5px; /* Reducir el padding de la barra de herramientas */
+  }
+  
+  .fc-toolbar h2 {
+    font-size: 1.2em; /* Reducir el tamaño del título en dispositivos móviles */
+  }
+  
+  .fc-event {
+    padding: 3px; /* Reducir el padding de los eventos en dispositivos móviles */
+    font-size: 0.8em; /* Reducir el tamaño de fuente de los eventos */
+  }
+}

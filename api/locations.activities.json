@@ -1,0 +1,473 @@
+[{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc28"
+  },
+  "nombre": "Recorrido por el Parque Nacional Iguazú",
+  "ciudad": "Puerto Iguazú",
+  "direccion": "Entrada al Parque Nacional Iguazú",
+  "informacion_general": "Embárcate en un emocionante recorrido por el Parque Nacional Iguazú y descubre la impresionante belleza de las Cataratas del Iguazú. Explora senderos naturales, admira las majestuosas cascadas y observa la diversa flora y fauna de la selva subtropical.",
+  "precio": 2500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc29"
+  },
+  "nombre": "Paseo en lancha por las cataratas",
+  "ciudad": "Puerto Iguazú",
+  "direccion": "Embarcadero del parque",
+  "informacion_general": "Siente la emoción de acercarte a las Cataratas del Iguazú con un paseo en lancha por el río. Experimenta la fuerza y la grandeza de las cascadas mientras te mojas con las gotas de agua y disfrutas de vistas inigualables de este espectáculo natural.",
+  "precio": 7500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc2a"
+  },
+  "nombre": "Senderismo en la selva",
+  "ciudad": "Puerto Iguazú",
+  "direccion": "Senderos del parque",
+  "informacion_general": "Sumérgete en la exuberante selva subtropical con una emocionante experiencia de senderismo en el Parque Nacional Iguazú. Descubre la flora y fauna únicas de la región mientras exploras senderos naturales y te maravillas con la belleza natural que te rodea.",
+  "precio": 2000,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc2b"
+  },
+  "nombre": "Tren del fin del mundo",
+  "ciudad": "Ushuaia",
+  "direccion": "Av. Maipú 1234",
+  "informacion_general": "Disfruta de un viaje en el legendario Tren del Fin del Mundo, que recorre los paisajes más impresionantes de Tierra del Fuego. Descubre la historia de este ferrocarril histórico mientras atraviesas bosques, ríos y montañas.",
+  "precio": 42900,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc2c"
+  },
+  "nombre": "Navegación por el Canal Beagle",
+  "ciudad": "Ushuaia",
+  "direccion": "Puerto de Ushuaia",
+  "informacion_general": "Embárcate en una emocionante navegación por el Canal Beagle y descubre la belleza natural de Ushuaia desde el mar. Observa la fauna marina, visita islas remotas y admira los impresionantes paisajes a lo largo del canal.",
+  "precio": 13500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc2d"
+  },
+  "nombre": "Cerro Castor",
+  "ciudad": "Ushuaia",
+  "direccion": "Ruta Nacional 3 Km 26",
+  "informacion_general": "Experimenta la emoción del esquí y el snowboard en el Cerro Castor, el centro de deportes de invierno más austral del mundo. Con pistas para todos los niveles y modernas instalaciones, es el lugar perfecto para disfrutar de la nieve en el extremo sur de Argentina.",
+  "precio": 24500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc2e"
+  },
+  "nombre": "Trekking en montañas",
+  "ciudad": "Mendoza",
+  "direccion": "Base de la montaña",
+  "informacion_general": "Embárcate en una emocionante aventura de trekking en la majestuosa Cordillera de los Andes. Descubre paisajes impresionantes, flora y fauna únicas, y desafíos emocionantes mientras exploras algunas de las rutas de senderismo más espectaculares de la región.",
+  "precio": 1500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc2f"
+  },
+  "nombre": "Rafting en ríos",
+  "ciudad": "Mendoza",
+  "direccion": "Río Mendoza, Potrerillos",
+  "informacion_general": "Siente la emoción de la aventura con un emocionante viaje de rafting en el río Mendoza. Navega por rápidos emocionantes, disfruta de paisajes impresionantes y sumérgete en la belleza natural de los Andes mientras vives una experiencia inolvidable llena de diversión y adrenalina.",
+  "precio": 2500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc30"
+  },
+  "nombre": "Visitas a bodegas",
+  "ciudad": "Mendoza",
+  "direccion": "Valle de Uco, Mendoza",
+  "informacion_general": "Descubre la famosa región vinícola de Mendoza con un tour de bodegas en el pintoresco Valle de Uco. Visita algunas de las mejores bodegas de la región, aprende sobre el proceso de producción del vino y disfruta de degustaciones de vinos premium acompañadas de deliciosas comidas gourmet.",
+  "precio": 3000,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc31"
+  },
+  "nombre": "Cabalgata",
+  "ciudad": "Córdoba",
+  "direccion": "Rancho Los Potrillos, Córdoba",
+  "informacion_general": "Embárcate en una emocionante cabalgata a través de los pintorescos paisajes de las Sierras de Córdoba. Disfruta de la naturaleza, la tranquilidad y las vistas panorámicas mientras recorres senderos escénicos y exploras la belleza natural de la región a caballo.",
+  "precio": 1200,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc32"
+  },
+  "nombre": "Tour por la ciudad histórica",
+  "ciudad": "Córdoba",
+  "direccion": "Centro Histórico de Córdoba",
+  "informacion_general": "Descubre la rica historia y la arquitectura colonial de Córdoba con un completo tour por la ciudad histórica. Visita monumentos emblemáticos, plazas encantadoras, iglesias antiguas y museos fascinantes mientras aprendes sobre la fascinante historia y cultura de la ciudad.",
+  "precio": 800,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b247f8e0ce29e80d9dc33"
+  },
+  "nombre": "Recorrido por las Sierras de Córdoba",
+  "ciudad": "Córdoba",
+  "direccion": "Senderos de las Sierras",
+  "informacion_general": "Explora la impresionante belleza natural de las Sierras de Córdoba con un emocionante recorrido por sus senderos. Disfruta de caminatas escénicas, cascadas impresionantes, miradores panorámicos y la tranquilidad de la naturaleza mientras te sumerges en el corazón de Argentina.",
+  "precio": 1500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc34"
+  },
+  "nombre": "Esquí y Snowboard",
+  "ciudad": "Bariloche",
+  "direccion": "Centro de Esquí Cerro Catedral",
+  "informacion_general": "Disfruta de la emoción de esquiar y hacer snowboard en el reconocido Centro de Esquí Cerro Catedral. Con pistas para todos los niveles de habilidad, alquiler de equipos y escuelas de esquí, es el lugar perfecto para disfrutar de la nieve y las actividades de invierno en Bariloche.",
+  "precio": 3500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc35"
+  },
+  "nombre": "Navegación por lagos",
+  "ciudad": "Bariloche",
+  "direccion": "Puerto San Carlos, Bariloche",
+  "informacion_general": "Embárcate en una relajante navegación por los impresionantes lagos de Bariloche y descubre la belleza natural de la región desde el agua. Disfruta de vistas panorámicas de las montañas, los bosques y los glaciares mientras te relajas y disfrutas del paisaje patagónico.",
+  "precio": 2500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc36"
+  },
+  "nombre": "Visita a cerros y miradores",
+  "ciudad": "Bariloche",
+  "direccion": "Base de Cerro Campanario, Bariloche",
+  "informacion_general": "Explora los impresionantes cerros y miradores de Bariloche con una visita a lugares emblemáticos como el Cerro Campanario. Disfruta de vistas panorámicas de los lagos, los bosques y las montañas mientras te maravillas con la belleza natural de la Patagonia argentina.",
+  "precio": 800,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc37"
+  },
+  "nombre": "Excursiones a la Quebrada de Humahuaca",
+  "ciudad": "Salta",
+  "direccion": "Salida desde el centro de Salta",
+  "informacion_general": "Embárcate en emocionantes excursiones a la impresionante Quebrada de Humahuaca, declarada Patrimonio de la Humanidad por la UNESCO. Descubre paisajes únicos, pueblos pintorescos y la rica cultura andina mientras exploras esta maravilla natural en compañía de guías expertos.",
+  "precio": 3000,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc38"
+  },
+  "nombre": "Visita a la Catedral de Salta",
+  "ciudad": "Salta",
+  "direccion": "Plaza 9 de Julio, Salta",
+  "informacion_general": "Sumérgete en la historia y la arquitectura colonial de Salta con una visita a su impresionante Catedral Basílica. Descubre sus hermosos interiores, su altar tallado en madera de cedro y su impresionante colección de arte sacro mientras exploras este importante sitio cultural.",
+  "precio": 500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc39"
+  },
+  "nombre": "Recorrido por la Ruta del Tren a las Nubes",
+  "ciudad": "Salta",
+  "direccion": "Estación de trenes de Salta",
+  "informacion_general": "Vive una experiencia inolvidable recorriendo la legendaria Ruta del Tren a las Nubes, una de las obras de ingeniería ferroviaria más impresionantes del mundo. Disfruta de paisajes únicos, viaductos espectaculares y emocionantes tramos de vía mientras atraviesas los Andes en esta aventura ferroviaria.",
+  "precio": 4000,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc3c"
+  },
+  "nombre": "Kalma Restó",
+  "ciudad": "Ushuaia",
+  "direccion": "Avenida Gobernador Deloqui 1047",
+  "informacion_general": "Kalma Restó es un restaurante elegante y moderno que ofrece una experiencia culinaria refinada en Ushuaia. Con una fusión de sabores locales e internacionales, este lugar es ideal para disfrutar de platos gourmet en un ambiente sofisticado.",
+  "precio": 2500,
+  "estrellas": 4.6
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc3d"
+  },
+  "nombre": "Azafrán Restó",
+  "ciudad": "Mendoza",
+  "direccion": "Belgrano 1069",
+  "informacion_general": "Azafrán Restó es un elegante restaurante ubicado en el centro de Mendoza, conocido por su cocina de autor y su excelente selección de vinos. Ofrece platos gourmet con ingredientes frescos y de calidad, destacando los sabores regionales de la provincia.",
+  "precio": 2500,
+  "estrellas": 4.6
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc3e"
+  },
+  "nombre": "Anna Bistró",
+  "ciudad": "Mendoza",
+  "direccion": "Gral. Paz 386",
+  "informacion_general": "Anna Bistró es un encantador restaurante ubicado en una casona antigua de Mendoza, especializado en cocina italiana y mediterránea. Ofrece una experiencia gastronómica única con platos caseros preparados con ingredientes frescos y de temporada.",
+  "precio": 1800,
+  "estrellas": 4.4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc3f"
+  },
+  "nombre": "El Mirador Restaurante",
+  "ciudad": "Mendoza",
+  "direccion": "Guardia Vieja 1001",
+  "informacion_general": "El Mirador Restaurante ofrece una vista panorámica única de la ciudad de Mendoza desde lo alto del Cerro de la Gloria. Es conocido por su cocina argentina contemporánea y su ambiente elegante. Perfecto para disfrutar de una cena romántica o una comida con amigos.",
+  "precio": 3000,
+  "estrellas": 4.7
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc40"
+  },
+  "nombre": "Cava de los Quesos",
+  "ciudad": "Córdoba",
+  "direccion": "Av. Colón 545",
+  "informacion_general": "La Cava de los Quesos es un encantador restaurante ubicado en el centro de Córdoba, especializado en quesos artesanales y cocina mediterránea. Ofrece una amplia selección de quesos regionales, tablas de degustación y platos gourmet acompañados de excelentes vinos.",
+  "precio": 2000,
+  "estrellas": 4.5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc41"
+  },
+  "nombre": "Parrilla Don Vicente",
+  "ciudad": "Córdoba",
+  "direccion": "Av. Vélez Sarsfield 41",
+  "informacion_general": "La Parrilla Don Vicente es un clásico restaurante argentino en el corazón de Córdoba, conocido por sus deliciosas carnes a la parrilla y su ambiente acogedor. Ofrece una variedad de cortes de carne, empanadas caseras y platos típicos argentinos.",
+  "precio": 1500,
+  "estrellas": 4.3
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc42"
+  },
+  "nombre": "Ganesha Restaurante Vegetariano",
+  "ciudad": "Córdoba",
+  "direccion": "Av. Rafael Nuñez 4215",
+  "informacion_general": "Ganesha Restaurante Vegetariano es un oasis gastronómico en Córdoba, especializado en cocina vegetariana y vegana. Ofrece platos creativos y saludables elaborados con ingredientes frescos y orgánicos, así como opciones para personas con intolerancias alimentarias.",
+  "precio": 1800,
+  "estrellas": 4.6
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc43"
+  },
+  "nombre": "El Boliche de Alberto",
+  "ciudad": "Bariloche",
+  "direccion": "Av. Bustillo 2260",
+  "informacion_general": "El Boliche de Alberto es un restaurante tradicional de Bariloche, conocido por sus excelentes platos de cordero patagónico y su ambiente acogedor. Ofrece una amplia variedad de platos típicos de la región, así como opciones para vegetarianos y veganos.",
+  "precio": 2500,
+  "estrellas": 4.6
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc44"
+  },
+  "nombre": "Kandahar Resto-Bar",
+  "ciudad": "Bariloche",
+  "direccion": "Juan Manuel de Rosas 498",
+  "informacion_general": "Kandahar Resto-Bar es un restaurante moderno y elegante ubicado en el centro de Bariloche, especializado en cocina internacional y argentina. Ofrece una experiencia gastronómica única con platos creativos, cócteles artesanales y una vista panorámica de la ciudad.",
+  "precio": 2800,
+  "estrellas": 4.7
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc45"
+  },
+  "nombre": "La Parrilla del Diego",
+  "ciudad": "Bariloche",
+  "direccion": "Av. San Martín 498",
+  "informacion_general": "La Parrilla del Diego es un restaurante argentino clásico en el corazón de Bariloche, famoso por sus deliciosas carnes a la parrilla y su ambiente familiar. Ofrece una amplia variedad de cortes de carne, así como opciones de pescado, pastas y ensaladas.",
+  "precio": 2000,
+  "estrellas": 4.4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc46"
+  },
+  "nombre": "Café del Tiempo",
+  "ciudad": "Salta",
+  "direccion": "Balcarce 901",
+  "informacion_general": "Café del Tiempo es un acogedor café restaurante ubicado en el centro histórico de Salta, conocido por su ambiente tranquilo y su deliciosa comida regional. Ofrece una variedad de platos típicos salteños, así como opciones de desayuno, almuerzo y cena.",
+  "precio": 1500,
+  "estrellas": 4.5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc47"
+  },
+  "nombre": "El Charrúa",
+  "ciudad": "Salta",
+  "direccion": "Av. Bicentenario 2030",
+  "informacion_general": "El Charrúa es un restaurante de estilo parrilla ubicado en Salta, especializado en carnes a la brasa y cocina argentina tradicional. Ofrece una amplia variedad de cortes de carne, así como opciones de pescado, pastas y ensaladas.",
+  "precio": 1800,
+  "estrellas": 4.4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc48"
+  },
+  "nombre": "Mistura Restaurante",
+  "ciudad": "Salta",
+  "direccion": "Calle Caseros 222",
+  "informacion_general": "Mistura Restaurante es un elegante restaurante ubicado en el casco histórico de Salta, conocido por su cocina creativa y su ambiente sofisticado. Ofrece platos gourmet con influencias internacionales, así como una amplia selección de vinos argentinos.",
+  "precio": 2500,
+  "estrellas": 4.7
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc49"
+  },
+  "nombre": "La Rueda",
+  "ciudad": "Puerto Iguazú",
+  "direccion": "Av. Victoria Aguirre 304",
+  "informacion_general": "La Rueda es un restaurante clásico de Puerto Iguazú, conocido por su auténtica cocina argentina y su ambiente familiar. Ofrece una variedad de platos tradicionales, incluyendo carnes a la parrilla, pastas caseras y deliciosos postres.",
+  "precio": 1200,
+  "estrellas": 4.3
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc4a"
+  },
+  "nombre": "Aqva Restaurant",
+  "ciudad": "Puerto Iguazú",
+  "direccion": "Ruta 12 km 1640",
+  "informacion_general": "Aqva Restaurant es un elegante restaurante ubicado en un entorno natural frente al río Iguazú, conocido por su exquisita cocina gourmet y su ambiente sofisticado. Ofrece platos creativos elaborados con ingredientes locales frescos, así como una selección de vinos.",
+  "precio": 2500,
+  "estrellas": 4.7
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc4b"
+  },
+  "nombre": "La Vaca Enamorada",
+  "ciudad": "Puerto Iguazú",
+  "direccion": "Av. Tres Fronteras 343",
+  "informacion_general": "La Vaca Enamorada es un restaurante temático ubicado en el corazón de Puerto Iguazú, conocido por su parrilla argentina y su ambiente animado. Ofrece una amplia variedad de cortes de carne, así como opciones de mariscos y platos vegetarianos.",
+  "precio": 1800,
+  "estrellas": 4.5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc4c"
+  },
+  "nombre": "Arakur Ushuaia Resort & Spa",
+  "ciudad": "Ushuaia",
+  "direccion": "Cerro Alarkén",
+  "informacion_general": "Arakur Ushuaia Resort & Spa es un lujoso hotel ubicado en la ladera del Cerro Alarkén, con impresionantes vistas panorámicas de Ushuaia y el Canal Beagle. Ofrece habitaciones elegantes, spa de primera clase y una experiencia gastronómica gourmet.",
+  "precio": 435000,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc4d"
+  },
+  "nombre": "Los Cauquenes Resort & Spa",
+  "ciudad": "Ushuaia",
+  "direccion": "Cabo de Hornos 1711",
+  "informacion_general": "Los Cauquenes Resort & Spa es un exclusivo hotel boutique ubicado frente al Canal Beagle, rodeado de la belleza natural de Tierra del Fuego. Ofrece habitaciones de lujo, spa de servicio completo y una cocina gourmet con ingredientes locales.",
+  "precio": 234500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc4e"
+  },
+  "nombre": "Las Hayas Ushuaia Resort",
+  "ciudad": "Ushuaia",
+  "direccion": "Luis F. Martial 1650",
+  "informacion_general": "Las Hayas Ushuaia Resort es un elegante hotel de montaña ubicado en el corazón del bosque de Tierra del Fuego, con vistas panorámicas del Canal Beagle y las montañas circundantes. Ofrece habitaciones cómodas, spa de alta gama y cocina regional refinada.",
+  "precio": 124800,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc4f"
+  },
+  "nombre": "Park Hyatt Mendoza",
+  "ciudad": "Mendoza",
+  "direccion": "Chile 1124",
+  "informacion_general": "Park Hyatt Mendoza es un lujoso hotel situado en el corazón de Mendoza, cerca de la Plaza Independencia y los principales viñedos de la región. Ofrece habitaciones elegantes, casino, spa de lujo y una amplia selección de restaurantes.",
+  "precio": 5500,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc50"
+  },
+  "nombre": "Cavas Wine Lodge",
+  "ciudad": "Mendoza",
+  "direccion": "Costaflores s/n",
+  "informacion_general": "Cavas Wine Lodge es un exclusivo hotel boutique ubicado en las afueras de Mendoza, rodeado de viñedos y vistas panorámicas de la Cordillera de los Andes. Ofrece suites de lujo, piscina al aire libre, spa y experiencias culinarias gourmet.",
+  "precio": 6000,
+  "estrellas": 5
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc51"
+  },
+  "nombre": "Sheraton Mendoza Hotel",
+  "ciudad": "Mendoza",
+  "direccion": "Primitivo de la Reta 989",
+  "informacion_general": "Sheraton Mendoza Hotel es un hotel de lujo ubicado en el centro de Mendoza, cerca de la Plaza Independencia y los principales puntos de interés de la ciudad. Ofrece habitaciones cómodas, piscina, spa y una variedad de opciones gastronómicas.",
+  "precio": 4500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc52"
+  },
+  "nombre": "Alto San Pedro",
+  "ciudad": "Córdoba",
+  "direccion": "Av. Colón 846",
+  "informacion_general": "Alto San Pedro es un elegante hotel boutique ubicado en el corazón de Córdoba, cerca de la Catedral y los principales puntos de interés. Ofrece habitaciones modernas, terraza con piscina, spa y un restaurante gourmet con vistas panorámicas de la ciudad.",
+  "precio": 3500,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc53"
+  },
+  "nombre": "Quorum Córdoba Hotel",
+  "ciudad": "Córdoba",
+  "direccion": "Av. La Voz del Interior 7000",
+  "informacion_general": "Quorum Córdoba Hotel es un hotel de lujo ubicado en la zona norte de Córdoba, cerca del Aeropuerto Internacional y importantes centros comerciales. Ofrece habitaciones cómodas, piscina al aire libre, spa y una variedad de opciones gastronómicas.",
+  "precio": 4000,
+  "estrellas": 4
+},
+{
+  "_id": {
+    "$oid": "662b25c08e0ce29e80d9dc54"
+  },
+  "nombre": "NH Córdoba Urbano",
+  "ciudad": "Córdoba",
+  "direccion": "Marcelo T. de Alvear 363",
+  "informacion_general": "NH Córdoba Urbano es un moderno hotel ubicado en el centro de Córdoba, cerca de la Plaza San Martín y la Catedral. Ofrece habitaciones confortables, gimnasio, piscina en la azotea y una selección de opciones gastronómicas en su restaurante.",
+  "precio": 3800,
+  "estrellas": 4
+}]
