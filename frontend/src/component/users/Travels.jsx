@@ -45,12 +45,22 @@ const Travels = () => {
         navigate(`/viajes/detalle/${id}`)
     }
 
+    const goToNewTravel = () => {
+        navigate('/viajes/nuevo-viaje');
+    };
+
     if (loading) return <p className='text-slate-800'>Cargando información de los viajes...</p>;
     if (error) return <p className='text-slate-800'>Ha ocurrido un error al cargar la información de los viajes: {error}</p>;
 
     return (
         <div>
             <h2 className='text-purple-800  text-3xl font-bold'>Sus viajes</h2>
+            <button
+                className='w-full md:w-auto p-4 mt-10 m-2 bg-purple-700 hover:bg-purple-900 text-white font-semibold'
+                onClick={goToNewTravel}
+            >
+                Agregar Viaje
+            </button>
             <div className='mt-6 mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {travels?.map(travel => (
                     <div key={travel._id} className='m-4 text-white bg-purple-600 p-4 rounded-md'>

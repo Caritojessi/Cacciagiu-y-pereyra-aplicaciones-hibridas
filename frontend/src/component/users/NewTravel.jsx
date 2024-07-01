@@ -3,32 +3,32 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { AuthContext } from '../../context/AuthContext';
 import Modal from '../modal/Modal'; // Ajusta la ruta según la ubicación de tu componente Modal
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NewTravel = () => {
   const [travelData, setTravelData] = useState({
-    nombre: "",
-    destino: "",
-    dueño: { id: "", nombre: "" },
-    gastos: { nombre: "", valor: "" }
+    nombre: '',
+    destino: '',
+    dueño: { id: '', nombre: '' },
+    gastos: { nombre: '', valor: '' }
   });
 
   const [error, setError] = useState(null);
   const [modalOpen, setModalOpen] = useState(false); // Estado para controlar la visibilidad de la modal
 
-  const user = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user && user.user && user.user._id && user.user.nombre) {
+    if (user && user._id && user.nombre) {
       setTravelData(prevData => ({
         ...prevData,
-        dueño: { id: user.user._id, nombre: user.user.nombre }
+        dueño: { id: user._id, nombre: user.nombre }
       }));
     }
-  }, [user.user]);
+  }, [user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     try {
@@ -47,16 +47,16 @@ const NewTravel = () => {
         }
       }, {
         headers: {
-          'auth': `${token}`
+          auth: `${token}`
         }
       });
 
       if (response.status === 201) {
         setTravelData({
-          nombre: "",
-          destino: "",
-          dueño: { id: "", nombre: "" },
-          gastos: { nombre: "", valor: "" }
+          nombre: '',
+          destino: '',
+          dueño: { id: '', nombre: '' },
+          gastos: { nombre: '', valor: '' }
         });
         setError(null);
         setModalOpen(true); // Abrir la modal cuando se agrega correctamente
@@ -70,14 +70,13 @@ const NewTravel = () => {
     }
   };
 
-  const goToTravels = (e) => {
-    e.preventDefault();
-    navigate(`/viajes/${user.user._id}`);
-  }
+  const goToTravels = () => {
+    navigate(`/viajes/${user._id}`);
+  };
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mt-24 mb-8 pt-18 text-purple-800">Agregar un nuevo viaje</h1>
+      <h1 className="text-3xl font-bold mb-8 pt-18 text-purple-800">Agregar un nuevo viaje</h1>
       <div className="max-w-lg mx-auto my-8 p-8 bg-white shadow-lg rounded-lg">
         <form onSubmit={handleSubmit}>
           {error && <p className="text-red-600 mb-4">{error}</p>}
@@ -110,8 +109,8 @@ const NewTravel = () => {
             Agregar viaje
           </button>
         </form>
-        <div className='mt-8 p-4 bg-gray-50 rounded-lg shadow-inner'>
-          <p className='text-gray-800 mb-4'>¿O quizás querías ver sus viajes?</p>
+        <div className="mt-8 p-4 bg-gray-50 rounded-lg shadow-inner">
+          <p className="text-gray-800 mb-4">¿O quizás querías ver sus viajes?</p>
           <button
             className="w-full bg-purple-500 text-white py-3 rounded-lg font-semibold hover:bg-purple-600 transition duration-300"
             onClick={goToTravels}
@@ -120,11 +119,9 @@ const NewTravel = () => {
           </button>
         </div>
       </div>
-      <Modal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        message="¡Viaje agregado correctamente!"
-      />
+      {modalOpen && (
+        <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} message="¡Viaje agregado correctamente!" />
+      )}
     </div>
   );
 };

@@ -51,8 +51,7 @@ const InfoActivity = () => {
         <h1 className="text-3xl font-bold text-purple-800 mb-6 mt-9">Detalle de Actividad</h1>
         <div className="max-w-4xl mx-auto my-10 p-8 bg-white shadow-lg rounded-lg flex flex-col md:flex-row">
             <div className="w-full md:w-1/3 mb-6 md:mb-0">
-                <img src={Actividad} alt="Montaña"   className="rounded-lg w-full h-full object-cover border-2 border-solid border-purple-500"
- />
+                <img src={Actividad} alt="Montaña"   className="rounded-lg w-full h-full object-cover border-2 border-solid border-purple-500"/>
             </div>
             <div className="w-full md:w-2/3 md:pl-8 flex flex-col justify-center">
                 {activity && (

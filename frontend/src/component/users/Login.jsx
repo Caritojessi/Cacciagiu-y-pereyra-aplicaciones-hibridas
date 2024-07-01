@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 import '../../utils/form.css';
 import ModalErrores from '../modal/ModalErrores'
 
-const Welcome = () => {
+const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
     password: ""
@@ -52,7 +52,6 @@ const Welcome = () => {
 
   return (
     <div className="contenedor text-slate-900">
-      {/* {error && <p>{error}</p>} */}
       <div className="formulario">
         <div className="form-container sign-in">
           <form onSubmit={handleLogin} id="form-basic">
@@ -122,4 +121,4 @@ const Welcome = () => {
   );
 }
 
-export default Welcome;
+export default Login;

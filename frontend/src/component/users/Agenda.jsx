@@ -23,11 +23,12 @@ const Agenda = () => {
             })
             .catch((error) => {
                 setLoading(false);
-                // if(error?.data.error.message === "jwt expired") {
-                //     // alert("token expirado")
-                //     // logoutUser()
-                //     // Navigate('/login')
-                // }
+                // console.log(error);
+            //     if(error?.data.error.message === "jwt expired") {
+            //         alert("token expirado")
+            //         logoutUser()
+            //         Navigate('/login')
+            //     }
             });
     }, []);
 

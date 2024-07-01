@@ -97,6 +97,25 @@ const Recomendaciones = () => {
         }
     };
 
+    const getShortDescription = (cityName) => {
+        switch (cityName.toLowerCase()) {
+            case 'ushuaia':
+                return 'La ciudad más austral del mundo, rodeada de montañas y glaciares.';
+            case 'mendoza':
+                return 'Conocida por sus vinos y el majestuoso Aconcagua.';
+            case 'bariloche':
+                return 'Destino ideal para el esquí y la belleza de los lagos patagónicos.';
+            case 'puerto iguazú':
+                return 'Hogar de las impresionantes Cataratas del Iguazú.';
+            case 'córdoba':
+                return 'Famosa por su arquitectura colonial y su vibrante vida nocturna.';
+            case 'salta':
+                return 'Destaca por su arquitectura colonial y paisajes montañosos.';
+            default:
+                return 'Una ciudad maravillosa con mucho por descubrir.';
+        }
+    };
+
     const settings = {
         dots: true,
         infinite: true,
@@ -137,7 +156,7 @@ const Recomendaciones = () => {
                              className="w-full h-48 object-cover rounded mb-4 shadow-md shadow-black"
                             />
                             <h2 className="text-xl font-bold mb-2">{city.nombre}</h2>
-                            <p className="text-sm mb-4">Descripción corta de la ciudad</p>
+                            <p className="text-sm mb-4">{getShortDescription(city.nombre)}</p>
                             <NavLink to={`/localidades/${city.nombre}`} className="inline-block bg-white text-purple-800 px-4 py-2 rounded hover:bg-purple-900 hover:text-white transition duration-300 mb-4">Ver más</NavLink>
                             {/* <img src={backgroundImageRight} alt="background" className="hidden md:block absolute right-0 top-0 h-full w-auto object-cover opacity-50" />
                             <img src={backgroundImageLeft} alt="background" className="hidden md:block absolute left-0 top-0 h-full w-auto object-cover opacity-50" /> */}

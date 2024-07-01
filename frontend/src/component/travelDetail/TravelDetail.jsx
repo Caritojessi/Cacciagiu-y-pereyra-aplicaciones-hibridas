@@ -37,7 +37,7 @@ const TravelDetail = () => {
                 });
                 setTravel(response.data);
             } catch (error) {
-                // console.error('Error al realizar la solicitud:', error);
+                console.error('Error al realizar la solicitud:', error);
                 if (error.response) {
                     setError(error.response.data.message);
                 } else if (error.request) {
@@ -75,6 +75,15 @@ const TravelDetail = () => {
             }
         }
     };
+
+    const calcularTotalGastos = () => {
+        let total = 0;
+        travel.gastos.forEach(gasto => {
+            total += parseFloat(gasto.valor);
+        });
+        return total.toLocaleString('es-ES', { minimumFractionDigits: 2 });
+    };
+    
 
     const goToEdit = (e) => {
         e.preventDefault();
@@ -160,14 +169,14 @@ const TravelDetail = () => {
         <div>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className='text-center md:text-left'>
-                    <h2 className='text-3xl text-purple-800 font-bold my-6 mx-auto'>Nombre: {travel?.nombre}</h2>
+                    <h1 className='text-3xl text-purple-800 font-bold my-6 mx-auto'>Nombre: {travel?.nombre}</h1>
                 </div>
                 <div className='text-center md:text-right'>
-                    <h3 className='text-3xl text-purple-800 font-bold my-6 mx-auto'>Destino: {travel?.destino}</h3>
+                    <h2 className='text-3xl text-purple-800 font-bold my-6 mx-auto'>Destino: {travel?.destino}</h2>
                 </div>
             </div>
             <div className='text-purple-900 font-semibold my-6 mx-auto'>
-                <h4 className='text-3xl font-bold text- mb-10'>Eventos del viaje</h4>
+                <h3 className='text-3xl font-bold text- mb-10'>Eventos del viaje</h3>
                 <div>
                     <FullCalendar
                         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -206,13 +215,14 @@ const TravelDetail = () => {
                     </div>
             </div>
             <div className='font-semibold my-6 mx-auto bg-purple-400 p-4 rounded-xl'>
-                <h4 className='text-3xl font-bold mb-8 text-center text-slate-900'>Gastos del viaje</h4>
+                <h3 className='text-3xl font-bold mb-8 text-center text-purple-900'>Gastos del viaje</h3>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                     {travel?.gastos?.map(gasto => (
                         <div key={gasto._id} className='bg-violet-900 p-3 rounded-lg flex justify-between items-center'>
                             <div className='m-2'>
                                 <p className='text-white text-lg font-semibold'>{capitalizeFirstLetter(gasto.nombre)}</p>
-                                <p className='text-white mt-2 text-lg font-semibold'>${parseFloat(gasto.valor).toFixed(2)}</p>
+                                <p className='text-white mt-2 text-lg font-semibold'>${parseFloat(gasto.valor).toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+
                             </div>
                             <div className='flex flex-col ml-4'>
                                 <button className='mb-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded' onClick={editSpend}><FontAwesomeIcon icon={faPen} /></button>
@@ -221,6 +231,9 @@ const TravelDetail = () => {
                         </div>
                     ))}
                 </div>
+                <div className='mt-4 text-purple-900 text-center text-lg font-semibold'>
+        Total de gastos: ${calcularTotalGastos()}
+    </div>
             </div>
             <div className='flex flex-col md:flex-row justify-center md:justify-evenly items-center mt-8 mb-4'>
                 <button className='w-full md:w-auto p-4 m-2 bg-purple-500 hover:bg-purple-600 text-white' onClick={goToEdit}>Editar datos del viaje</button>
