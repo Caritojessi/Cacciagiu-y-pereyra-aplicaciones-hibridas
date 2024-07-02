@@ -27,13 +27,13 @@ travelroutes.delete('/eliminar/:id', verificarToken, deleteTravel)
 
 // PARA LOS GASTOS
 
-travelroutes.get('/gastos/:id', verificarToken, getSpend);
+travelroutes.get('/gastos/:viajeId/:id', verificarToken, getSpend);
 
 travelroutes.put('/gastos/:id', verificarToken, updateSpend);
 
 travelroutes.delete('/eliminar-gasto/:id', verificarToken, deleteSpend)
 
-travelroutes.put('/modificar-gasto/:id', verificarToken, modifySpend)
+travelroutes.put('/modificar-gasto/:viajeId/:id', verificarToken, modifySpend)
 
 // PARA LOS EVENTOS
 

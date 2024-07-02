@@ -78,8 +78,8 @@ const TravelDetail = () => {
 
     const calcularTotalGastos = () => {
         let total = 0;
-        travel.gastos.forEach(gasto => {
-            total += parseFloat(gasto.valor);
+        travel?.gastos.forEach(gasto => {
+            total += parseFloat(gasto?.valor);
         });
         return total.toLocaleString('es-ES', { minimumFractionDigits: 2 });
     };
@@ -128,9 +128,9 @@ const TravelDetail = () => {
         }
     }
 
-    const editSpend = (e) => {
-            e.preventDefault();
-            navigate(`/modificar-gasto/${travel._id}`);
+    const editSpend = (id) => {
+
+        navigate(`/modificar-gasto/${travel._id}/${id}`);
     }
 
     const handleDeleteClick = (action) => {
@@ -201,32 +201,32 @@ const TravelDetail = () => {
                         dayMaxEventRows={3}
                         eventClick={handleEventClick}
                     />
-                    <Modal
-                        isOpen={modalOpen}
-                        onClose={handleCloseModal}
-                        event={selectedEvent ? {
-                        title: selectedEvent.title,
-                        extendedProps: {
-                            description: selectedEvent.extendedProps.description,
-                            horario: selectedEvent.extendedProps.horario
-                        }
-                        } : null}
-                    />
+                    {selectedEvent && (
+                        <Modal
+                            isOpen={modalOpen}
+                            onClose={handleCloseModal}
+                            event={{
+                                title: selectedEvent.title,
+                                description: selectedEvent.extendedProps.description,
+                                horario: selectedEvent.extendedProps.horario
+                            }}
+                        />
+                    )}
                     </div>
             </div>
             <div className='font-semibold my-6 mx-auto bg-purple-400 p-4 rounded-xl'>
                 <h3 className='text-3xl font-bold mb-8 text-center text-purple-900'>Gastos del viaje</h3>
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                     {travel?.gastos?.map(gasto => (
-                        <div key={gasto._id} className='bg-violet-900 p-3 rounded-lg flex justify-between items-center'>
+                        <div key={gasto?._id} className='bg-violet-900 p-3 rounded-lg flex justify-between items-center'>
                             <div className='m-2'>
-                                <p className='text-white text-lg font-semibold'>{capitalizeFirstLetter(gasto.nombre)}</p>
-                                <p className='text-white mt-2 text-lg font-semibold'>${parseFloat(gasto.valor).toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
+                                <p className='text-white text-lg font-semibold'>{capitalizeFirstLetter(gasto?.nombre)}</p>
+                                <p className='text-white mt-2 text-lg font-semibold'>${parseFloat(gasto?.valor).toLocaleString('es-ES', { minimumFractionDigits: 2 })}</p>
 
                             </div>
                             <div className='flex flex-col ml-4'>
-                                <button className='mb-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded' onClick={editSpend}><FontAwesomeIcon icon={faPen} /></button>
-                                <button className='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700' onClick={() => handleDeleteClick(gasto._id)}><FontAwesomeIcon icon={faTrash} /></button>
+                                <button className='mb-2 bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded' onClick={() => editSpend(gasto?._id)}><FontAwesomeIcon icon={faPen} /></button>
+                                <button className='bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700' onClick={() => handleDeleteClick(gasto?._id)}><FontAwesomeIcon icon={faTrash} /></button>
                             </div>
                         </div>
                     ))}

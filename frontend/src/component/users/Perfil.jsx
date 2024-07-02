@@ -20,7 +20,7 @@ const Perfil = () => {
         setEditing(true);
     };
 
-    console.log(user?.nombre);
+    // console.log(user?.nombre);
 
     const handleSave = async () => {
         const updatedUser = {
@@ -30,11 +30,9 @@ const Perfil = () => {
 
         try {
             const response = await axios.put(`http://localhost:3000/users/${user._id}`, updatedUser);
-            setUser(response.data); // Actualiza el estado del usuario en el AuthContext
+            setUser(prev => ({ ...prev, nombre: newName })); // Actualiza solo el nombre del usuario en el AuthContext
             setEditing(false);
-            logoutUser();
         } catch (error) {
-            // console.error("Hubo un error al actualizar el perfil", error);
             setError(error.response?.data || error.message);
         }
     };
@@ -88,7 +86,7 @@ const Perfil = () => {
                     <div className="flex justify-evenly p-6 sm:p-8 items-center">
                         <div className="flex-shrink-0">
                             <img
-                                className="h-45 w-40 rounded-full border-4 border-purple-500"
+                                className="h-40 w-40 rounded-full border-4 border-purple-500"
                                 src={user?.imagenPerfil || defaultUserImage}
                                 alt="Imagen de perfil"
                             />

@@ -55,7 +55,7 @@ function App() {
           <Route path='/viajes/nuevo-viaje' element={<NewTravel />} />
           <Route path='/registro-gastos/:id' element={<UpdateSpends />} /> 
           <Route path='/registro-eventos/:id' element={<UpdateEvents />} /> 
-          <Route path='/modificar-gasto/:id' element={<ModifySpend />} /> 
+          <Route path='/modificar-gasto/:idViaje/:id' element={<ModifySpend />} /> 
           <Route path='/modificar/:id' element={<UpdateTravel />} /> 
           <Route path='/actividades/recomendaciones' element={<Recomendaciones />} />
         </Route>

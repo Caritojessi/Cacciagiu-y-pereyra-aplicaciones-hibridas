@@ -86,13 +86,9 @@ export const getSpend = async (req, res) => {
     // console.log('Received ID:', id);
 
     try {
-        // Asegúrate de que el ID sea del tipo correcto
-        // const objectId = mongoose.Types.ObjectId(id);
 
         // Hacer una búsqueda general para listar todos los viajes y sus gastos
         const travels = await Travels.find({});
-
-        // console.log('All Travels:', travels);
 
         // Encuentra el viaje que contiene el gasto con el ID proporcionado
         const travel = await Travels.findOne({ "gastos._id": id }, { "gastos.$": 1 });
@@ -157,21 +153,24 @@ export const deleteSpend = async (req, res) => {
 export const modifySpend = async (req, res) => {
     const {id} = req.params
 
-    const { name, value } = req.body;
+    const { nombre, valor } = req.body;
 
+    // console.log(req.body);
     try {
         const result = await Travels.updateOne(
             { "gastos._id": id },
             {
                 $set: {
-                    "gastos.$.name": name,
-                    "gastos.$.value": value
+                    "gastos.$.nombre": nombre,
+                    "gastos.$.valor": valor
                 }
             }
         );
         if (result.nModified === 0) {
             return res.status(404).json({ message: 'Gasto no encontrado' });
         }
+
+        // console.log(res);
 
         res.status(200).json({ message: 'Gasto actualizado correctamente' });
     } catch (error) {

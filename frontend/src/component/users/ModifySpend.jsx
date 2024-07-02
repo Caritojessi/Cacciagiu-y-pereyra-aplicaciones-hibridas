@@ -3,13 +3,17 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import Modal from '../modal/Modal';
 
 const ModifySpend = () => {
-    const { id } = useParams();
+    const { idViaje, id } = useParams();
+    console.log('Id del viaje: ', idViaje);
+    console.log('Id del gasto: ', id);
     const user = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [error, setError] = useState(null);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const [gasto, setGasto] = useState({
         nombre: '',
@@ -25,7 +29,7 @@ const ModifySpend = () => {
                     throw new Error('No se registró token de acceso');
                 }
 
-                const res = await axios.get(`http://localhost:3000/viajes/gastos/${id}`, {
+                const res = await axios.get(`http://localhost:3000/viajes/gastos/${idViaje}/${id}`, {
                     headers: { auth: `${token}` }
                 });
 
@@ -53,7 +57,7 @@ const ModifySpend = () => {
                 throw new Error('No se registró token de acceso');
             }
 
-            const res = await axios.put(`http://localhost:3000/viajes/modificar-gasto/${id}`, {
+            const res = await axios.put(`http://localhost:3000/viajes/modificar-gasto/${idViaje}/${id}`, {
                 nombre: gasto.nombre,
                 valor: gasto.valor
             }, {
@@ -66,8 +70,8 @@ const ModifySpend = () => {
                     valor: ''
                 });
                 setError(null);
-                alert('¡El gasto se modificó correctamente!');
-                navigate(`/viajes/detalle/${id}`);
+                setModalOpen(true);
+                navigate(`/viajes/detalle/${idViaje}`);
             }
         } catch (error) {
             if (error.response) {
@@ -90,7 +94,7 @@ const ModifySpend = () => {
                         id="nombre"
                         value={gasto.nombre}
                         onChange={(e) => setGasto({ ...gasto, nombre: e.target.value })}
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full text-gray-700"
+                        className="mt-1 p-2 border border-gray-300 rounded-md w-full bg-violet-300 text-violet-950 font-semibold"
                         required
                     />
                 </div>
@@ -101,7 +105,7 @@ const ModifySpend = () => {
                         id="valor"
                         value={gasto.valor}
                         onChange={(e) => setGasto({ ...gasto, valor: e.target.value })}
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full text-gray-700"
+                        className="mt-1 p-2 border border-gray-300 rounded-md w-full bg-violet-300 text-violet-950 font-semibold"
                         required
                     />
                 </div>
@@ -114,13 +118,16 @@ const ModifySpend = () => {
                     </button>
                     <button
                         type="button"
-                        onClick={() => navigate(`/viajes/detalle/${id}`)}
+                        onClick={() => navigate(`/viajes/detalle/${idViaje}`)}
                         className="bg-purple-500 text-white py-2 px-4 rounded-md hover:bg-purple-600 transition duration-300"
                     >
                         Volver al viaje
                     </button>
                 </div>
             </form>
+            {modalOpen && (
+                <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} message="¡Gasto actualizado correctamente!" />
+            )}
         </div>
     );
 };
