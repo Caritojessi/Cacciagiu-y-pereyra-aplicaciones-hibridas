@@ -6,7 +6,7 @@ import {
     updateSpend,
     updateEvents,
     updateTravel,
-    deleteTravel,
+    storageTravel,
     deleteSpend,
     modifySpend,
     getSpend
@@ -23,9 +23,9 @@ travelroutes.get('/detalle/:id', verificarToken, travelById);
 
 travelroutes.put('/modificar/:id', verificarToken, updateTravel)
 
-travelroutes.delete('/eliminar/:id', verificarToken, deleteTravel)
+travelroutes.put('/archivar/:id', verificarToken, storageTravel)
 
-// PARA LOS GASTOS
+// RUTAS PARA LOS GASTOS
 
 travelroutes.get('/gastos/:viajeId/:id', verificarToken, getSpend);
 
@@ -35,7 +35,7 @@ travelroutes.delete('/eliminar-gasto/:id', verificarToken, deleteSpend)
 
 travelroutes.put('/modificar-gasto/:viajeId/:id', verificarToken, modifySpend)
 
-// PARA LOS EVENTOS
+// RUTAS PARA LOS EVENTOS
 
 travelroutes.put('/eventos/:id', verificarToken, updateEvents)
 

@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import React, { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import montanaImage from '../../assets/montaña.jpg';
-import mendozaImage from '../../assets/playa.jpg';
-import barilocheImage from '../../assets/bariloche.jpg';
-import iguazuImage from '../../assets/cataratas.jpg';
-import cordobaImage from '../../assets/cordoba.jpg';
-import saltaImage from '../../assets/salta.jpg';
-import backgroundImageRight from '../../assets/parte.png'; // Importa la primera imagen
-import backgroundImageLeft from '../../assets/parte-copia.png'; // Importa la segunda imagen
+import { AuthContext } from '../../context/AuthContext';
+import { getActivities, getCities } from './activitiesServices/recomendaciones';
 
 const Recomendaciones = () => {
     const [activities, setActivities] = useState([]);
@@ -23,23 +15,11 @@ const Recomendaciones = () => {
     useEffect(() => {
         const fetchActivities = async () => {
             try {
-                const token = Cookies.get('jwtoken');
-                if (!token) {
-                    throw new Error('No se registró token de acceso');
-                }
-                const response = await axios.get('http://localhost:3000/api/actividades/actividades', {
-                    headers: { 'auth': `${token}` }
-                });
-                setActivities(response.data);
+                
+                const activities = await getActivities();
+                setActivities(activities);
             } catch (error) {
-                // console.error('Error al realizar la solicitud:', error);
-                if (error.response) {
-                    setError(error.response.data.message);
-                } else if (error.request) {
-                    setError('No se recibió respuesta del servidor');
-                } else {
-                    setError('Error al configurar la solicitud');
-                }
+                setError(error.message || 'Ha ocurrido un error inesperado');
             } finally {
                 setLoading(false);
             }
@@ -50,16 +30,9 @@ const Recomendaciones = () => {
     useEffect(() => {
         const fetchCities = async () => {
             try {
-                const token = Cookies.get('jwtoken');
-                if (!token) {
-                    throw new Error('No se registró token de acceso');
-                }
-                const response = await axios.get('http://localhost:3000/api/localidades/localidades', {
-                    headers: { 'auth': `${token}` }
-                });
-                setCities(response.data);
+                const cities = await getCities();
+                setCities(cities);
             } catch (error) {
-                // console.error('Error al realizar la solicitud:', error);
                 if (error.response) {
                     setError(error.response.data.message);
                 } else if (error.request) {
@@ -78,23 +51,10 @@ const Recomendaciones = () => {
     if (loading) return <p>Cargando lista de datos...</p>;
     if (error) return <p>Ha ocurrido un error al cargar la lista: {error}</p>;
 
-    const getImageForCity = (cityName) => {
-        switch (cityName.toLowerCase()) {
-            case 'ushuaia':
-                return montanaImage;
-            case 'mendoza':
-                return mendozaImage;
-            case 'bariloche':
-                return barilocheImage;
-            case 'puerto iguazú':
-                return iguazuImage;
-            case 'córdoba':
-                return cordobaImage;
-            case 'salta':
-                return saltaImage;
-            default:
-                return montanaImage; // Imagen por defecto
-        }
+    // Construir la URL de la imagen basada en la ruta del backend
+    const getImageForCity = (imageName) => {
+        // console.log(imageName);
+        return `http://localhost:3000/api/images/${imageName}`;
     };
 
     const getShortDescription = (cityName) => {
@@ -151,15 +111,13 @@ const Recomendaciones = () => {
                     <div key={city._id} className="mb-16">
                         <div className="bg-purple-800 text-white rounded p-4 shadow-lg m-2">
                             <img
-                                src={getImageForCity(city.nombre)} 
+                                src={getImageForCity(city.image)} // Usar la URL construida dinámicamente
                                 alt={`Imagen de ${city.nombre}`}
-                             className="w-full h-48 object-cover rounded mb-4 shadow-md shadow-black"
+                                className="w-full h-48 object-cover rounded mb-4 shadow-md shadow-black"
                             />
                             <h2 className="text-xl font-bold mb-2">{city.nombre}</h2>
                             <p className="text-sm mb-4">{getShortDescription(city.nombre)}</p>
                             <NavLink to={`/localidades/${city.nombre}`} className="inline-block bg-white text-purple-800 px-4 py-2 rounded hover:bg-purple-900 hover:text-white transition duration-300 mb-4">Ver más</NavLink>
-                            {/* <img src={backgroundImageRight} alt="background" className="hidden md:block absolute right-0 top-0 h-full w-auto object-cover opacity-50" />
-                            <img src={backgroundImageLeft} alt="background" className="hidden md:block absolute left-0 top-0 h-full w-auto object-cover opacity-50" /> */}
                         </div>
                         <Slider {...settings}>
                             {activities.filter(activity => activity.ciudad === city.nombre).map(activity => (
@@ -167,7 +125,7 @@ const Recomendaciones = () => {
                                     <div className="bg-purple-500 text-white rounded p-4 shadow-lg h-full flex flex-col" style={{ height: '300px' }}>
                                         <h2 className="text-xl font-bold mb-2">{activity.nombre}</h2>
                                         <p className="text-sm mb-4">{activity.informacion_general}</p>
-                                        <NavLink to={`/actividades/id/${activity._id}`} className="mt-auto inline-block bg-white text-blue-800 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">Ver más</NavLink>
+                                        <NavLink to={`/actividades/id/${activity._id}`} className="mt-auto inline-block bg-white text-purple-800 px-4 py-2 rounded hover:bg-purple-900 hover:text-white transition duration-300">Ver más</NavLink>
                                     </div>
                                 </div>
                             ))}

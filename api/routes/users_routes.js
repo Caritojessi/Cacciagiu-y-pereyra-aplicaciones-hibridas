@@ -1,10 +1,26 @@
 import express from "express"
 import Joi from "joi"
 import verificarToken from '../middlewares/auth_middle.js'
-import { getUsers, createUser, updateUser, agregarViaje, deleteUser } from "../controllers/usuarios_controller.js"
+import { getUsers, createUser, updateUser, agregarViaje, deleteUser, getOneUser } from "../controllers/usuarios_controller.js"
 import path from "path"
+import multer from "multer"
 
 const ruta = express.Router();
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images');
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const fileExtension = path.extname(file.originalname);
+        const filename = uniqueSuffix + fileExtension;
+        req.savedFilename = filename; 
+        cb(null, filename);
+    }
+});
+
+const upload = multer({ storage: storage});
 
 const schema = Joi.object({
     nombre: Joi.string()
@@ -30,10 +46,24 @@ ruta.get("/users", (req, res) => {
     .catch((error) => {res.status(400).json(error)})
 })
 
+ruta.get("/admin/:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+        const user = await getOneUser(id);
+        if (user) {
+            res.status(200).json({ rol: user.rol }); 
+        } else {
+            res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 ruta.post("/register", async (req, res) => {
     const body = req.body;
 
-    // Validación del esquema
+    // ValidaciÃ³n del esquema
     const { error, value } = schema.validate({ nombre: body.nombre, email: body.email, password: body.password });
 
     if (error) {
@@ -51,11 +81,14 @@ ruta.post("/register", async (req, res) => {
 ruta.get('/', verificarToken, getUsers);
 
 
-ruta.put("/:id", async (req, res) => {
+
+ruta.put("/:id", upload.single('image'), async (req, res) => {
     try {
         const body = req.body;
         const id = req.params.id;
-        const updatedUser = await updateUser(body, id);
+        const imagePath = req.file ? req.file.filename : null; 
+
+        const updatedUser = await updateUser(body, id, imagePath);
         res.status(200).json(updatedUser);
     } catch (error) {
         res.status(400).json({ error: error.message });

@@ -1,7 +1,8 @@
 import express from "express"
-import { getLocation, updateLocation, deleteLocation, getCities, getLocationById, sortByNameAsc, sortByNameDesc } from "../controllers/cities_controller.js"
+import { getLocation, updateLocation, deleteLocation, getCities, getLocationById, sortByNameAsc, sortByNameDesc, createCity } from "../controllers/cities_controller.js"
 import verificarToken from "../middlewares/auth_middle.js"
-
+import multer from "multer";
+import path from 'path'
 
 const router = express.Router();
 
@@ -13,6 +14,27 @@ router.get('/localidades', verificarToken, (req, res) => {
         .then((cities) => {res.status(200).json(cities)})
         .catch((error) => {res.status(400).json(error)})
 })
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images');
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const fileExtension = path.extname(file.originalname);
+        const filename = uniqueSuffix + fileExtension;
+        req.savedFilename = filename; // Guardar el nombre de archivo en la solicitud para usarlo más tarde
+        cb(null, filename);
+    }
+});
+
+const upload = multer({ storage: storage});
+
+
+// CREAR UNA NUEVA CIUDAD
+router.post('/nueva-ciudad', verificarToken, upload.single('image'), createCity);
+
 
 // JSON CON LA INFORMACIÓN DE LA LOCALIDAD DEFINIDA POR SU NOMBRE
 router.post('/:nombre', verificarToken, async (req, res) => {
@@ -49,21 +71,13 @@ router.post('/id/', verificarToken, (req, res) => {
 
 
 //EDITA EL CONTENIDO DE UNA LOCALIDAD
-router.put('/', verificarToken, async (req, res) => {
-    let body = req.body;
-    let id = body._id
-    try {
-        const result = await updateLocation(body, id);
-        res.status(200).json({ message: "Localidad actualizada correctamente" });
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-});
+router.put('/:id', verificarToken, upload.single('image'), updateLocation);
 
 
 // ELIMINA UNA CIUDAD ¡CIUDADO CON BORRAR CIUDADES CON INFORMACION POR FAVOR! USAR EJEMPLOS/PRUEBAS
-router.delete('/', verificarToken, async (req, res) => {
-    let id = req.body._id
+router.delete('/:id', verificarToken, async (req, res) => {
+    let id = req.params.id
+    // console.log(id);
     try {
         const result = await deleteLocation(id);
         res.status(200).json({ message: "Localidad eliminada correctamente" });

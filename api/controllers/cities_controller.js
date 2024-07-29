@@ -1,4 +1,12 @@
+import multer from "multer";
 import Location from "../models/locations_model.js";
+
+const getImageFilename = (file) => {
+    if (file) {
+        return `${Date.now()}-${file.originalname}`;
+    }
+    return '';
+};
 
 /**
  * Obtiene una lista de todas las localidades en la colección de MongoDB.
@@ -10,6 +18,28 @@ async function getCities() {
         return cities;
     } catch (error) {
         throw error;
+    }
+}
+
+/**
+ * 
+ */
+async function createCity(req, res) {
+    const { nombre, informacion, actividades } = req.body;
+    const image = req.savedFilename || '';
+
+    try {
+        const newCity = new Location({
+            nombre,
+            informacion,
+            actividades: actividades.split(',').map(activity => activity.trim()),
+            image
+        });
+
+        await newCity.save();
+        res.status(201).json(newCity);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
     }
 }
 
@@ -52,19 +82,29 @@ async function getLocationById(id) {
  * @param {ObjectId} id - El ID de la localidad que se quiere editar.
  * @returns La localidad actualizada con los nuevos datos.
  */
-async function updateLocation(body, id) {
+async function updateLocation(req, res) {
+    const id = req.params.id;
+    const { nombre, informacion, actividades } = req.body;
+    const image = req.savedFilename;
+
+    let updateFields = {
+        nombre,
+        informacion,
+        actividades: Array.isArray(actividades) ? actividades : actividades.split(',').map(activity => activity.trim())
+    };
+
+    if (image) {
+        updateFields.image = image;
+    }
+
     try {
-        let result = await Location.updateOne({ _id: id }, {
-            $set:{
-                nombre: body.nombre,
-                informacion: body.informacion,
-                actividades: body.actividades,
-                imagen: body.imagen // Se actualiza la imagen si se proporciona
-            }
+        const result = await Location.updateOne({ _id: id }, {
+            $set: updateFields
         });
-        return result;
+
+        res.status(200).json({ message: "Localidad actualizada correctamente", data: result });
     } catch (error) {
-        throw error;
+        res.status(400).json({ error: error.message });
     }
 }
 
@@ -108,4 +148,4 @@ async function sortByNameDesc() {
     }
 }
 
-export { getLocation, updateLocation, deleteLocation, getCities, getLocationById, sortByNameAsc, sortByNameDesc };
+export { getLocation, updateLocation, deleteLocation, getCities, getLocationById, sortByNameAsc, sortByNameDesc, createCity };

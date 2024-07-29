@@ -18,7 +18,9 @@ ruta.post('/login', (req, res)=>{
                 usuario: {
                     _id: data._id,
                     nombre: data.nombre,
-                    email: data.email
+                    email: data.email,
+                    rol: data.rol,
+                    image: data.image
                 }
             }, process.env.SEED, { expiresIn: process.env.EXPIRATION });
 
@@ -26,7 +28,9 @@ ruta.post('/login', (req, res)=>{
                 usuario: {
                     _id: data._id,
                     nombre: data.nombre,
-                    email: data.email
+                    email: data.email,
+                    rol: data.rol,
+                    image: data.image
                 },
                 jwtoken
             });

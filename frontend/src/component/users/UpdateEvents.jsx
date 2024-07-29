@@ -1,22 +1,19 @@
-import React, { useContext, useState } from 'react';
+// UpdateEvents.js
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { format } from 'date-fns';
 import Modal from '../modal/Modal';
+import { updateEvent } from './userServices/updateEvent';
 
 const UpdateEvents = () => {
     const { id } = useParams();
-    const user = useContext(AuthContext);
-
     const [eventos, setEventos] = useState({
         nombre: '',
         descripcion: '',
         fecha: '',
         horario: ''
     });
-
     const [error, setError] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -24,35 +21,7 @@ const UpdateEvents = () => {
         e.preventDefault();
 
         try {
-            const token = Cookies.get('jwtoken');
-
-            if (!token) {
-                throw new Error('No se registró token de acceso');
-            }
-
-            const [year, month, day] = eventos.fecha.split('-');
-            const [hour, minute] = eventos.horario.split(':');
-
-            const fechaCompleta = new Date(Date.UTC(year, month - 1, day, hour, minute));
-
-            // console.log(fechaCompleta);
-
-            const response = await axios.put(
-                `http://localhost:3000/viajes/eventos/${id}`,
-                {
-                    eventos: {
-                        nombre: eventos.nombre,
-                        descripcion: eventos.descripcion,
-                        fecha: fechaCompleta.toISOString(),
-                        horario: eventos.horario
-                    }
-                },
-                {
-                    headers: {
-                        auth: `${token}`
-                    }
-                }
-            );
+            const response = await updateEvent(id, eventos);
 
             if (response.status === 201) {
                 setEventos({ nombre: '', descripcion: '', fecha: '', horario: '' });
@@ -68,14 +37,18 @@ const UpdateEvents = () => {
         }
     };
 
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
     return (
         <div className="max-w-lg mx-auto mt-8 pt-10">
             <div className="bg-white shadow-md rounded-lg p-6">
-                <h2 className="text-2xl font-semibold mb-4 text-purple-900">Agregar un evento al viaje</h2>
+                <h1 className="text-2xl font-semibold mb-4 text-purple-900">Agregar un evento al viaje</h1>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {error && <p className="text-red-500 mb-4">{error}</p>}
                     <div className="mb-4">
-                        <label htmlFor="nombre" className="block text-lg font-semibold text-gray-700 mb-2">
+                        <label htmlFor="nombre" className="block text-md font-semibold text-gray-700 mb- text-left">
                             Nombre del evento:
                         </label>
                         <input
@@ -88,7 +61,7 @@ const UpdateEvents = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="descripcion" className="block text-lg font-semibold text-gray-700 mb-2">
+                        <label htmlFor="descripcion" className="block text-md font-semibold text-gray-700 mb-2 text-left">
                             Descripción del evento:
                         </label>
                         <textarea
@@ -101,7 +74,7 @@ const UpdateEvents = () => {
                         ></textarea>
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="fecha" className="block text-lg font-semibold text-gray-700 mb-2">
+                        <label htmlFor="fecha" className="block text-md font-semibold text-gray-700 mb-2 text-left">
                             Fecha del evento:
                         </label>
                         <input
@@ -114,7 +87,7 @@ const UpdateEvents = () => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="horario" className="block text-lg font-semibold text-gray-700 mb-2">
+                        <label htmlFor="horario" className="block text-md font-semibold text-gray-700 mb-2 text-left">
                             Horario del evento:
                         </label>
                         <input
@@ -131,7 +104,7 @@ const UpdateEvents = () => {
                             type="submit"
                             className="w-1/2 bg-purple-500 text-white py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:ring-purple-300 mr-2"
                         >
-                            Agregar Evento
+                            Agregar evento
                         </button>
                         <a
                             href={`/viajes/detalle/${id}`}
@@ -144,8 +117,8 @@ const UpdateEvents = () => {
             </div>
             <Modal
                 isOpen={modalOpen}
-                onClose={() => setModalOpen(false)}
-                message="Evento agregado correctamente!"
+                onClose={closeModal}
+                message="¡Evento agregado correctamente!"
             />
         </div>
     );

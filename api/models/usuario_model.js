@@ -27,7 +27,11 @@ const usuarioSchema = new mongoose.Schema({
         {
             viajeId: mongoose.Schema.Types.ObjectId
         }
-    ]
+    ],
+    rol: {
+        type: String,
+        default: 'user'
+    }
 });
 
 export default mongoose.model("users", usuarioSchema)

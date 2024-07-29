@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { AuthContext } from '../../context/AuthContext';
 import Cookies from 'js-cookie'
 import axios from 'axios';
+import { updateTravel } from './userServices/updateTravel';
 
 const UpdateTravel = () => {
 
     const {id} = useParams();
-    const user = useContext(AuthContext)
 
     const [error, setError] = useState(null)
 
@@ -20,60 +19,49 @@ const UpdateTravel = () => {
         e.preventDefault();
 
         try {
-            const token = Cookies.get('jwtoken')
+            const response = await updateTravel(id, travel);
 
-            if(!token) {
-                throw new Error('No se registró token de acceso')
-            }
-
-            const res = await axios.put(`http://localhost:3000/viajes/modificar/${id}`, {
-                nombre: travel.nombre,
-                destino: travel.destino
-            }, {
-                headers: {'auth': `${token}`}
-            });
-
-            if (res.status === 201) {
+            if (response.status === 201) {
                 setTravel({
-                    nombre: "",
-                    destino: ""
+                    nombre: '',
+                    destino: ''
                 });
                 setError(null);
-                alert('¡El viaje se modificó correctamente!')
+                alert('¡El viaje se modificó correctamente!');
             }
         } catch (error) {
-            if(error.res) {
-                setError(error.res.data.error)
+            if (error.response) {
+                setError(error.response.data.error);
             } else {
-                setError('Error al modificar el viaje')
+                setError('Error al modificar el viaje');
             }
         }
-    }
+    };
 
   return (
     <div className="max-w-md mx-auto mt-24 mb-10 p-6 bg-white shadow-md rounded-md">
-        <h1 className="text-xl font-semibold mb-4 text-purple-900">Modificar el nombre y destino del viaje</h1>
+        <h1 className="text-xl font-semibold mb-4 text-purple-900">Modificar datos del viaje</h1>
             <form onSubmit={handleSubmit}>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <div className="mb-4">
-                    <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">Nombre del viaje:</label>
+                    <label htmlFor="nombre" className="block text-md font-semibold text-gray-700 mb-2 text-left">Nombre del viaje:</label>
                     <input
                         type="text"
                         id="nombre"
                         value={travel.nombre}
                         onChange={(e) => setTravel({...travel, nombre: e.target.value})}
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full text-gray-700"
+                        className="w-full px-3 py-2 border bg-violet-300 text-violet-950 font-semibold rounded-md focus:outline-none focus:ring focus:ring-blue-300"
                         required
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="destino" className="block text-sm font-medium text-gray-700">Destino del viaje:</label>
+                    <label htmlFor="destino" className="block text-md font-semibold text-gray-700 mb-2 text-left">Destino del viaje:</label>
                     <input
                         type="text"
                         id="destino"
                         value={travel.destino}
                         onChange={(e) => setTravel({...travel, destino: e.target.value})}
-                        className="mt-1 p-2 border border-gray-300 rounded-md w-full text-gray-700"
+                        className="w-full px-3 py-2 border bg-violet-300 text-violet-950 font-semibold rounded-md focus:outline-none focus:ring focus:ring-blue-300"
                         required
                     />
                 </div>

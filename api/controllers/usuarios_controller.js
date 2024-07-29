@@ -1,11 +1,15 @@
 import Usuario from "../models/usuario_model.js"
 import bcrypt from "bcrypt"
 
-
 async function getUsers(){
     let usuarios = await Usuario.find();
-    // let usuarios = await Usuario.find({estado: true});
     return usuarios;
+}
+
+async function getOneUser(id) {
+    let user = await Usuario.findById(id); 
+    console.log('en la función del backend ',user);
+    return user;
 }
 
 
@@ -25,20 +29,27 @@ async function createUser(body){
 }
 
 
-async function updateUser(body, id) {
+async function updateUser(body, id, image) {
     try {
+        let updateFields = {
+            nombre: body.nombre
+        };
+
+        if (body.password) {
+            updateFields.password = bcrypt.hashSync(body.password, 10);
+        }
+
+        if (image) {
+            updateFields.image = image;
+        }
 
         const updatedUser = await Usuario.updateOne({ _id: id }, {
-            $set: {
-                nombre: body.nombre,
-                password: bcrypt.hashSync(body.password, 10)
-            }
+            $set: updateFields
         });
 
         if (updatedUser.nModified === 0) {
-            throw new Error('No se pudo actualizar el usuario. Verifique que el email sea correcto.');
+            throw new Error('No se pudo actualizar el usuario. Verifique que el ID sea correcto.');
         }
-        // console.log(updateUser);
         return updatedUser;
     } catch (error) {
         throw new Error(error.message);
@@ -82,4 +93,4 @@ async function updateUser(body, id) {
 }
 
 
-export { getUsers, createUser, updateUser, agregarViaje, deleteUser}
+export { getUsers, createUser, updateUser, agregarViaje, deleteUser, getOneUser}

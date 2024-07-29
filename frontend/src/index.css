@@ -20,7 +20,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+html{
+  background-color: rgb(233, 209, 232) !important;
+}
 
 a {
   font-weight: 500;

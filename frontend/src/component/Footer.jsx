@@ -7,6 +7,7 @@ const Footer = () => {
     return (
         <footer className="bg-purple-800 mt-8 text-white pt-10 pb-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 className='hidden'>Footer</h1>
                 <div className="flex flex-col md:flex-row justify-between items-center">
                     <div className="flex items-center mb-4 md:mb-0">
                         <img src={Logo} alt="Ilustración" className="h-12 md:h-16 lg:h-20 rounded-lg" />

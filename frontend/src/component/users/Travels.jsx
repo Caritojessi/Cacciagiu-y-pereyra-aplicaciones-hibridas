@@ -1,8 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import Cookies from 'js-cookie';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import UshuaiaImage from '../../assets/viajes/ushuaia.jpg'; 
+import BuenosAiresImage from '../../assets/viajes/buenos-aires.jpg'; 
+import DefaultImage from '../../assets/viajes/default-city.jpg'; 
+import IguazuImage from '../../assets/viajes/puerto.jpg';
+import MendoImage from '../../assets/viajes/mendo.jpg';
+import { getTravels } from './userServices/travels';
 
 const Travels = () => {
     const { id } = useParams();
@@ -10,29 +13,14 @@ const Travels = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
-    // const { user, auth } = useContext(AuthContext);
-    // console.log(user);
 
     useEffect(() => {
         const fetchTravels = async () => {
             try {
-                const token = Cookies.get('jwtoken');
-                if (!token) {
-                    throw new Error('No se registró token de acceso');
-                }
-                const response = await axios.get(`http://localhost:3000/viajes/${id}`, {
-                    headers: { 'auth': `${token}` }
-                });
-                setTravels(response.data);
+                const data = await getTravels(id); 
+                setTravels(data);
             } catch (error) {
-                console.error('Error al realizar la solicitud:', error);
-                if (error.response) {
-                    setError(error.response.data.message);
-                } else if (error.request) {
-                    setError('No se recibió respuesta del servidor');
-                } else {
-                    setError('Error al configurar la solicitud');
-                }
+                setError(error.message || 'Ha ocurrido un error inesperado');
             } finally {
                 setLoading(false);
             }
@@ -42,11 +30,30 @@ const Travels = () => {
     }, [id]);
 
     const goToTravelDetail = (id) => {
-        navigate(`/viajes/detalle/${id}`)
-    }
+        navigate(`/viajes/detalle/${id}`);
+    };
 
     const goToNewTravel = () => {
         navigate('/viajes/nuevo-viaje');
+    };
+
+    const goToArchived = () => {
+        navigate(`/viajes/archivados/${id}`)
+    }
+
+    const getCityImage = (destino) => {
+        switch (destino.toLowerCase()) {
+            case 'ushuaia':
+                return UshuaiaImage;
+            case 'buenos aires':
+                return BuenosAiresImage;
+            case 'iguazú':
+                return IguazuImage;
+            case 'mendoza':
+                return MendoImage;
+            default:
+                return DefaultImage;
+        }
     };
 
     if (loading) return <p className='text-slate-800'>Cargando información de los viajes...</p>;
@@ -54,18 +61,29 @@ const Travels = () => {
 
     return (
         <div>
-            <h2 className='text-purple-800  text-3xl font-bold'>Sus viajes</h2>
+            <h1 className='text-purple-800 text-3xl font-bold'>Mis viajes</h1>
             <button
                 className='w-full md:w-auto p-4 mt-10 m-2 bg-purple-700 hover:bg-purple-900 text-white font-semibold'
                 onClick={goToNewTravel}
             >
-                Agregar Viaje
+                Agregar viaje
+            </button>
+            <button
+                className='w-full md:w-auto py-4 px-6 mt-10 m-2 bg-purple-700 hover:bg-purple-900 text-white font-semibold'
+                onClick={goToArchived}
+            >
+                Ver viajes archivados
             </button>
             <div className='mt-6 mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-                {travels?.map(travel => (
+                {travels.map(travel => (
                     <div key={travel._id} className='m-4 text-white bg-purple-600 p-4 rounded-md'>
                         <h3 className='text-xl'>Nombre del viaje: {travel.nombre}</h3>
-                        <h4 className='text-xl'>Destino: {travel.destino}</h4>
+                        <h4 className='text-xl mb-4'>Destino: {travel.destino}</h4>
+                        <img
+                            src={getCityImage(travel.destino)}
+                            alt={`Imagen de ${travel.destino}`}
+                            className="w-full h-64 object-cover mb-2 rounded-md"
+                        />
                         <button className='w-full md:w-auto p-4 m-2 bg-violet-950 hover:bg-purple-900 text-white font-semibold' onClick={() => goToTravelDetail(travel._id)}>
                             Ver viaje
                         </button>
@@ -74,6 +92,6 @@ const Travels = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Travels;

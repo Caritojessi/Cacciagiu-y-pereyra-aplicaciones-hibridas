@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
 import Travels from '../models/travels_model.js'
 
-// PARA VER LOS CONTROLLERS MINUTO 38' APROX
-
 
 export const getUserTravels = async (req, res) => {
     const {userId} = req.params;
@@ -28,7 +26,9 @@ export const createNewTravel = async (req, res) => {
         dueño: {
             user_id: body.dueño.id,
             userNombre: body.dueño.nombre
-        }
+        },
+        inicio_viaje: body.inicio_viaje,
+        final_viaje: body.final_viaje || null,
     });
 
     try {
@@ -68,10 +68,15 @@ export const updateTravel = async (req, res) => {
     }
 }
 
-export const deleteTravel = async (req, res) => {
+export const storageTravel = async (req, res) => {
     const {id} = req.params
+    const { estado } = req.body
     try {
-        const travel = await Travels.deleteOne({_id: id})
+        const travel = await Travels.updateOne({_id: id}, {
+            $set: {
+                estado: estado
+            }
+        })
         res.status(201).json(travel)
     } catch (error) {
         res.status(400).json({ message: error.message })
@@ -83,28 +88,17 @@ export const deleteTravel = async (req, res) => {
 export const getSpend = async (req, res) => {
     const { id } = req.params;
 
-    // console.log('Received ID:', id);
-
     try {
 
-        // Hacer una búsqueda general para listar todos los viajes y sus gastos
         const travels = await Travels.find({});
 
-        // Encuentra el viaje que contiene el gasto con el ID proporcionado
         const travel = await Travels.findOne({ "gastos._id": id }, { "gastos.$": 1 });
 
-        // console.log('Travel:', travel);
-
-        // Si no se encuentra el viaje o el gasto, devuelve un error 404
         if (!travel || !travel.gastos.length) {
-            // console.log('Gasto no encontrado');
             return res.status(404).json({ message: 'Gasto no encontrado' });
         }
-
-        // Devuelve el gasto encontrado
         res.status(200).json(travel.gastos[0]);
     } catch (error) {
-        // console.error('Error:', error);
         res.status(400).json({ message: error.message });
     }
 };
@@ -114,19 +108,18 @@ export const updateSpend = async (req, res) => {
     const {id} = req.params
     const body = req.body
 
-    // console.log(body);
     try {
         const travel = await Travels.updateOne({ _id: id }, {
             $push: {
                 gastos: {
                     nombre: body.nombre,
-                    valor: body.valor
+                    valor: body.valor,
+                    fecha: body.fecha
                 }
             }
         })
         res.status(201).json(travel);
     } catch (error) {
-        // console.log(error.message);
         res.status(400).json({ message: error.message })
     }
 }
@@ -155,7 +148,6 @@ export const modifySpend = async (req, res) => {
 
     const { nombre, valor } = req.body;
 
-    // console.log(req.body);
     try {
         const result = await Travels.updateOne(
             { "gastos._id": id },
@@ -170,7 +162,6 @@ export const modifySpend = async (req, res) => {
             return res.status(404).json({ message: 'Gasto no encontrado' });
         }
 
-        // console.log(res);
 
         res.status(200).json({ message: 'Gasto actualizado correctamente' });
     } catch (error) {
@@ -185,7 +176,6 @@ export const updateEvents = async (req, res) => {
     const body = req.body
 
     try {
-        // console.log('Fecha recibida: ', body.eventos.fecha);
         const fechaEvento = new Date(body.eventos.fecha);
         const travel = await Travels.updateOne({_id: id}, {
             $push: {

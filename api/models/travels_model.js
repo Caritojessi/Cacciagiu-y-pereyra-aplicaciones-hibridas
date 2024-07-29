@@ -28,6 +28,10 @@ const TravelSchema = new mongoose.Schema({
             valor: {
                 type: Number,
                 required: false
+            },
+            fecha:{
+                type: Date,
+                required: true
             }
         }
     ],
@@ -50,7 +54,19 @@ const TravelSchema = new mongoose.Schema({
                 required: true
             }
         }
-    ]
+    ],
+    estado: {
+        type: Boolean,
+        default: true
+    },
+    inicio_viaje: {
+        type: Date,
+        required: true
+    },
+    final_viaje: {
+        type: Date,
+        required: false
+    }
 });
 
 

@@ -4,12 +4,10 @@ import { AuthContext } from '../../context/AuthContext';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import Modal from '../modal/Modal';
+import { fetchGasto, handleSubmitGasto } from './userServices/modifySpend';
 
 const ModifySpend = () => {
     const { idViaje, id } = useParams();
-    console.log('Id del viaje: ', idViaje);
-    console.log('Id del gasto: ', id);
-    const user = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [error, setError] = useState(null);
@@ -21,64 +19,31 @@ const ModifySpend = () => {
     });
 
     useEffect(() => {
-        // Obtener los datos del gasto al montar el componente
-        const fetchGasto = async () => {
+        const getGasto = async () => {
             try {
-                const token = Cookies.get('jwtoken');
-                if (!token) {
-                    throw new Error('No se registró token de acceso');
-                }
-
-                const res = await axios.get(`http://localhost:3000/viajes/gastos/${idViaje}/${id}`, {
-                    headers: { auth: `${token}` }
-                });
-
-                if (res.status === 200) {
-                    setGasto({
-                        nombre: res.data.nombre,
-                        valor: res.data.valor
-                    });
-                }
+                const data = await fetchGasto(idViaje, id);
+                setGasto(data);
             } catch (error) {
-                setError('Error al obtener los datos del gasto');
+                setError(error.message);
             }
         };
 
-        fetchGasto();
-    }, [id]);
+        getGasto();
+    }, [idViaje, id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const token = Cookies.get('jwtoken');
-
-            if (!token) {
-                throw new Error('No se registró token de acceso');
-            }
-
-            const res = await axios.put(`http://localhost:3000/viajes/modificar-gasto/${idViaje}/${id}`, {
-                nombre: gasto.nombre,
-                valor: gasto.valor
-            }, {
-                headers: { auth: `${token}` }
-            });
-
-            if (res.status === 200) {
-                setGasto({
-                    nombre: '',
-                    valor: ''
-                });
+            const success = await handleSubmitGasto(idViaje, id, gasto);
+            if (success) {
+                setGasto({ nombre: '', valor: '' });
                 setError(null);
                 setModalOpen(true);
                 navigate(`/viajes/detalle/${idViaje}`);
             }
         } catch (error) {
-            if (error.response) {
-                setError(error.response.data.error);
-            } else {
-                setError('Error al modificar el gasto');
-            }
+            setError(error.message);
         }
     };
 
@@ -88,7 +53,7 @@ const ModifySpend = () => {
             <form onSubmit={handleSubmit}>
                 {error && <p className="text-red-500 mb-4">{error}</p>}
                 <div className="mb-4">
-                    <label htmlFor="nombre" className="block text-sm font-medium text-gray-700">Nombre del gasto:</label>
+                    <label htmlFor="nombre" className="block text-left text-md font-medium text-gray-700">Nombre del gasto:</label>
                     <input
                         type="text"
                         id="nombre"
@@ -99,7 +64,7 @@ const ModifySpend = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="valor" className="block text-sm font-medium text-gray-700">Valor del gasto:</label>
+                    <label htmlFor="valor" className="block text-left text-md font-medium text-gray-700">Valor del gasto:</label>
                     <input
                         type="number"
                         id="valor"

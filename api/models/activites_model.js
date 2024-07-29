@@ -1,17 +1,13 @@
 import mongoose from "mongoose";
 
 const activitySchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
     ciudad: {
         type: String,
         required: true
     },
     direccion: {
         type: String,
-        required: true
+        required: false
     },
     nombre: {
         type: String,
@@ -28,6 +24,10 @@ const activitySchema = new mongoose.Schema({
     estrellas: {
         type: Number,
         required: true
+    },
+    image: {
+        type: String,
+        required: false
     }
 })
 

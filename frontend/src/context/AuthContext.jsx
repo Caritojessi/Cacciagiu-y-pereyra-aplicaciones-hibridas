@@ -13,11 +13,15 @@ export const AuthContextProvider = ({children}) => {
     useEffect(() => {
         if(auth) {
             const decoded = jwtDecode(auth)
+
+            // console.log(decoded);
             
             setUser({
                 nombre: decoded.usuario.nombre,
                 _id: decoded.usuario._id,
-                email: decoded.usuario.email
+                email: decoded.usuario.email,
+                rol: decoded.usuario.rol,
+                image: decoded.usuario.image
             })
         }
     }, [])

@@ -6,7 +6,7 @@
     overflow: hidden;
     width: 768px;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 580px;
     margin: 8rem auto;
 }
 
@@ -80,7 +80,6 @@
 }
 
 .formulario input {
-    background-color: #a84fa8 !important;
     color: #080000 !important;
     border: none;
     margin: 0.5rem 0;

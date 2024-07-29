@@ -11,6 +11,35 @@ async function getActivities() {
 }
 
 /**
+ * const actividad = await Activity.findByIdAndUpdate(id, data, { new: true });
+   return actividad;
+ */
+   async function createActivity(req, res) {
+    const { ciudad, direccion, nombre, informacion_general, precio, estrellas } = req.body;
+    const image = req.file ? req.file.filename : '';
+
+    // console.log(image); // Verifica que el nombre del archivo esté correctamente asignado
+
+    try {
+        const newActivity = new Activity({
+            ciudad,
+            direccion,
+            nombre,
+            informacion_general,
+            precio,
+            estrellas,
+            image
+        });
+
+        await newActivity.save();
+        res.status(201).json(newActivity);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+}
+
+
+/**
  * 
  * @param {string} ciudad, la ciudad por la que se quiere buscar actividades
  * @returns todas las actividades con su información correspondiente a la ciudad indicada
@@ -72,25 +101,14 @@ async function dobleFiltro (ciudad, estrellas) {
  * @param {ObjectId} id, el ID de la actividad que se quiere editar
  * @returns La actividad actualizada con los nuevos datos
  */
-async function updateActividad(body, id) {
+const updateActividad = async (data, id) => {
     try {
-        
-        const result = await Activity.updateOne({ _id: id }, {
-            $set:{
-                ciudad: body.ciudad,
-                direccion: body.direccion,
-                nombre: body.nombre,
-                informacion_general: body.informacion_general,
-                precio: body.precio,
-                estrellas: body.estrellas
-            }
-        });
-        return result;
+        const actividad = await Activity.findByIdAndUpdate(id, data, { new: true });
+        return actividad;
     } catch (error) {
-        throw error;
+        throw new Error('Error al actualizar la actividad: ' + error.message);
     }
-}
-
+};
 
 /**
  * 
@@ -174,4 +192,4 @@ async function getActivityByName(query) {
     }
 }
 
-export { getActivities, getActivityLocation, sortByPriceAsc, sortByPriceDesc, dobleFiltro, updateActividad, deleteActividad, getActivityById, paginacion, getActivityByName }
+export { getActivities, getActivityLocation, sortByPriceAsc, sortByPriceDesc, dobleFiltro, updateActividad, deleteActividad, getActivityById, paginacion, getActivityByName, createActivity }
